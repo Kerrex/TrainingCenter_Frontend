@@ -1,0 +1,348 @@
+$clndr-border: 0px solid #000;
+
+$break-small: 320px;
+$break-medium: 768px;
+$break-large: 1200px;
+
+.calendar
+{
+    margin: 30px auto;
+    max-width: 600px;
+    font-size: 14px;
+
+    .clndr
+    {
+        border: 0px solid #000;
+        .clndr-controls
+        {
+            width: 100%;
+            position: relative;
+            margin-bottom: 10px;
+            div {
+                color: #fff;
+                background: #ef5350;
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+
+            .month
+            {
+                float: left;
+                width: 80%;
+                text-align: center;
+                
+                .selected_month {
+                    position: relative;
+                    bottom: 5px;
+                }
+            }
+
+            .clndr-control-button
+            {
+                float: left;
+                width: 10%;
+                
+
+                &.rightalign
+                {
+                    text-align: right;
+                    width: 10%;
+                }
+                .clndr-next-button
+                {
+                    cursor: pointer;
+                    &.inactive
+                    {
+                        opacity: 0.5;
+                        &:hover
+                        {
+
+                            cursor: default;
+                        }
+                    }
+                }
+                .clndr-previous-button
+                {
+                    cursor: pointer;
+                    &.inactive
+                    {
+                        opacity: 0.5;
+                        &:hover
+                        {
+                            background: none;
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+        }
+
+        .clndr-table
+        {
+            table-layout: fixed;
+            width: 100%;
+
+            .header-days
+            {
+                height: 30px;
+                font-size: 15px;
+                background: #ef5350;
+
+                .header-day
+                {
+                    vertical-align: middle;
+                    text-align: center;
+                    border-left: $clndr-border;
+                    border-top: $clndr-border;
+
+                    color: #fff;
+
+                    &:last-child
+                    {
+                        border-right: $clndr-border;
+                    }
+                }
+            }
+
+            tr
+            {   
+                height: 70px;
+                @media screen and (max-width: $break-small) {
+                    height: 45px;
+                }
+                
+                @media screen and (max-width: $break-medium) {
+                    height: 55px;
+                }
+
+                td
+                {
+                    vertical-align: middle;
+                }
+
+                .day
+                {
+                    border-left: $clndr-border;
+                    border-top: $clndr-border;
+                    width: 100%;
+                    height: inherit;
+
+                    &:hover { 
+                        background: rgba(0,0,0,0.1); 
+                    }
+
+                    &.today, &.my-today
+                    {
+                        background: #ef5350;
+                        color: #fff;
+                        &:hover { background: lighten(#ef5350, 10%); }
+                        &.event
+                        {
+                            background: mix(#B4E09F, #9AD6E3);
+                        }
+                    }
+
+                    &.event, &.my-event
+                    {
+                        background: #B4E09F;
+                        &:hover
+                        {
+                            background: darken(#B4E09F, 10%);
+                        }
+                    }
+
+                    &.inactive, &.my-inactive
+                    {
+                        background: #ddd;
+                    }
+
+                    &:last-child
+                    {
+                        border-right: $clndr-border;
+                    }
+
+                    .day-contents
+                    {
+                        box-sizing: border-box;
+                        // width: 100%;
+                        // height: 100%;
+                        padding: 8px;
+                        font-size: 12px;
+                        text-align: center;
+                    }
+                }
+
+                .empty, .adjacent-month, .my-empty, .my-adjacent-month
+                {
+                    border-left: $clndr-border;
+                    border-top: $clndr-border;
+                    width: 100%;
+                    height: inherit;
+                    background: #eee;
+
+                    &:hover { background: #ddd; }
+
+                    &:last-child
+                    {
+                        border-right: $clndr-border;
+                    }
+                }
+
+                &:last-child
+                {
+                    .day, .my-day
+                    {
+                        border-bottom: $clndr-border;
+                    }
+
+                    .empty, .my-empty
+                    {
+                        border-bottom: $clndr-border;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+$box-size: 25px;
+
+.cal2
+{
+    max-width: 177px;
+    margin: 30px auto;
+
+    .clndr
+    {
+        .clndr-controls
+        {
+            display: block;
+            width: 100%;
+            margin-bottom: 3px;
+
+            .clndr-previous-button
+            {
+                float: left;
+                width: 10%;
+                text-align: left;
+                cursor: pointer;
+                &:hover
+                {
+                    background-color: #f4f4f4;
+                }
+            }
+            .month
+            {
+                float: left;
+                width: 80%;
+                text-align: center;
+            }
+            .clndr-next-button
+            {
+                float: left;
+                width: 10%;
+                text-align: right;
+                cursor: pointer;
+                &:hover
+                {
+                    background-color: #f4f4f4;
+                }
+            }
+        }
+
+        .clndr-grid
+        {
+            text-align: center;
+            border: 1px solid #FF4545;
+
+            .header-day
+            {
+                float: left;
+                width: $box-size;
+                height: $box-size;
+                // padding-top: 5px;
+                background: #FF4545;
+            }
+
+            .day
+            {
+                float: left;
+                width: $box-size;
+                height: $box-size;
+
+                &.event
+                {
+                    background-color: #B4E09F;
+                }
+
+                &.today
+                {
+                    background-color: #ef5350;
+                }
+                &.selected
+                {
+                    background-color: #E37FD6;
+                }
+                &.inactive{
+                    color: gray;
+                }
+            }
+
+            .empty, .adjacent-month
+            {
+                float: left;
+                width: $box-size;
+                height: $box-size;
+                background: #ddd;
+            }
+        }
+
+        .clndr-today-button
+        {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            &:hover
+            {
+                background-color: #ddd;
+            }
+        }
+    }
+
+    .multi-month-controls
+    {
+        .quarter-button
+        {
+            display: inline-block;
+            width: 25%;
+
+            &:hover
+            {
+                cursor: pointer;
+                background-color: #f4f4f4;
+            }
+        }
+    }
+}
+
+.clndr-next-button, .clndr-previous-button, .clndr-next-year-button, .clndr-previous-year-button
+{
+    &.inactive
+    {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+.calendar-details-card {
+    background: #ef5350;
+    color: white;
+    margin: 40px auto;
+
+    i {
+        margin-top: 7px;
+        float: right;
+        color: white;
+    }
+}

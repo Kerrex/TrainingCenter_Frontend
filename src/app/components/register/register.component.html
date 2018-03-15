@@ -1,0 +1,79 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+/> -->
+<link rel="stylesheet" href="/assets/register.css" />
+<div class="wrapper">
+  <mat-card class="login-card form-register">
+    <mat-card-title>{{ 'registration.title' | translate }}</mat-card-title>
+    <mat-card-content>
+      <div class="form-wrapper">
+        <mat-horizontal-stepper [linear]=true>
+          <mat-step [stepControl]="firstFormGroup">
+            <ng-template matStepLabel>{{'registration.step_1' | translate}}</ng-template>
+            <form [formGroup]="firstFormGroup" id="firstForm" name="firstForm" (submit)="submitFirstForm()">
+              <div class="form-group" [ngClass]="{ 'has-error': firstFormSubmitted && firstFormGroup.get('username').invalid }">
+                <input [ngClass]="{ 'form-control-danger': firstFormSubmitted && firstFormGroup.get('username').invalid }" type="text" class="form-control"
+                  formControlName="username" placeholder="{{'registration.username' | translate}}" />
+                <div *ngIf="firstFormSubmitted && firstFormGroup.get('username').invalid" class="alert alert-danger">
+                  <div *ngFor="let error of object.keys(firstFormGroup.get('username').errors);">
+                    {{ "registration.username." + error | translate}}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-danger': firstFormSubmitted && firstFormGroup.get('password').invalid }">
+                <input [ngClass]="{ 'form-control-danger': firstFormSubmitted && firstFormGroup.get('password').invalid }" type="password"
+                  class="form-control" formControlName="password" placeholder="{{'registration.password' | translate}}" />
+                <div *ngIf="firstFormSubmitted && firstFormGroup.get('password').invalid" class="alert alert-danger">
+                  <div *ngFor="let error of object.keys(firstFormGroup.get('password').errors);">
+                    {{ "registration.password." + error | translate}}
+                  </div>
+                </div>
+              </div>
+              <span>
+                <button  mat-raised-button color="primary" type="button">{{'registration.back_to_login' | translate}}</button>
+              </span>
+              <span>
+                <button class="button_next" mat-raised-button color="primary" matStepperNext form="firstForm" type="button" (click)="submitFirstForm()">{{'registration.next_step' | translate}}</button>
+              </span>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]=secondFormGroup>
+            <ng-template matStepLabel>{{'registration.step_2' | translate}}</ng-template>
+            <form id="secondForm" name="secondForm" [formGroup]="secondFormGroup" (submit)="submitSecondForm()">
+              <div class="form-group" [ngClass]="{ 'has-danger': secondFormSubmitted && secondFormGroup.get('email').invalid }">
+                <input [ngClass]="{ 'form-control-danger': secondFormSubmitted && secondFormGroup.get('email').invalid }" type="email" class="form-control" formControlName="email" placeholder="{{'registration.email' | translate}}" />
+                <div *ngIf="secondFormSubmitted && secondFormGroup.get('email').invalid" class="alert alert-danger">
+                  <div *ngFor="let error of object.keys(secondFormGroup.get('email').errors);">
+                    {{ "registration.email." + error | translate}}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="firstName" placeholder="{{'registration.firstName' | translate}}"
+                />
+                <!-- <div *ngIf="secondFormSubmitted && firstFormGroup.get('firstName').invalid" class="help-block">{{'registration.' | translate}}</div> -->
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="lastName" placeholder="{{'registration.lastName' | translate}}"
+                />
+                <!-- <div *ngIf="secondFormSubmitted && firstFormGroup.get('firstName').invalid" class="help-block">{{'registration.' | translate}}</div> -->
+              </div>
+              <span>
+                <button mat-raised-button color="primary" matStepperPrevious>{{'registration.previous_step' | translate}}</button>
+              </span>
+              <span>
+                <button class="button_next" mat-raised-button color="primary" matStepperNext form="secondForm" type="button" (click)="submitSecondForm()">{{'registration.next_step' | translate}}</button>
+              </span>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>{{'registration.step_3' | translate}}</ng-template>
+            <div class="thank_you_message">{{'registration.thank_you_message_1' | translate}}<br>{{'registration.thank_you_message_2' | translate}}</div>
+            <div class="form-group signup-button-div">
+              <button routerLink="/login" mat-raised-button color="primary" [disabled]="loading" class="signup-button" form="loginForm">{{'registration.back_to_login' | translate}}</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,57 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-nav-tabs">
+          <div class="card-header" data-background-color="red">
+              <div class="nav-tabs-wrapper">
+                  <span class="nav-tabs-title">{{'measurements.table.header' | translate}}</span>
+                  <ul class="nav nav-tabs" data-tabs="tabs">
+                      <li class="active">
+                          <a routerLink="/measurements/addedit" data-toggle="tab" class="pointer-important">
+                              <i class="material-icons">add</i>
+                              {{'measurements.table.add_new' | translate}}
+                          <div class="ripple-container"></div></a>
+                      </li>
+                  </ul>
+                  <p>
+              </div>
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table table-hover">
+              <thead class="text-danger">
+                <tr>
+                  <th>{{'measurements.table.date' | translate}}</th>
+                  <th>{{'measurements.table.weight' | translate}}</th>
+                  <th>{{'measurements.table.waist' | translate}}</th>
+                  <th>{{'measurements.table.biceps' | translate}}</th>
+                  <th>{{'measurements.table.thigh' | translate}}</th>
+                  <th>{{'measurements.table.chest' | translate}}</th>
+                  <th>{{'measurements.table.neck' | translate}}</th>
+                  <th>{{'measurements.table.fat_percentage' | translate}}</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let measurement of measurements | async" id="measurement_{{measurement.id}}">
+                  <td>{{measurement.dateAdded | date: 'longDate'}}</td>
+                  <td>{{measurement.weight / 10}} kg</td>
+                  <td>{{measurement.waist / 10}} cm</td>
+                  <td>{{measurement.biceps / 10}} cm</td>
+                  <td>{{measurement.thigh / 10}} cm</td>
+                  <td>{{measurement.chest / 10}} cm</td>
+                  <td>{{measurement.neck / 10}} cm</td>
+                  <td matTooltip="{{'measurement.table.fat_percentage_tooltip'}}">{{getFatPercentage(measurement)}}%</td>
+                  <td matTooltip="{{'measurement.table.edit_tooltip'}}"><a routerLink="/measurements/{{measurement.id}}"><i class="material-icons">mode_edit</i></a></td>
+                  <td matTooltip="{{'measurement.table.delete_tooltip'}}"><a (click)="deleteMeasurement(measurement)"><i class="material-icons">delete</i></a></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header" data-background-color="red">
+                      <h4 class="title">{{'measurements.details.title'}}</h4>
+                      <p class="category">{{'measurements.details.subtitle'}}</p>
+                  </div>
+                  <div class="card-content">
+                      <form #form="ngForm" [formGroup]="formGroup" id="formGroup" name="formGroup" (submit)="submitMeasurement()" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mat-form-field class="form-group form-black">
+                                    <!-- <label class="control-label">{{'measurements.details.date' | translate}}</label> -->
+                                    <input class="disabled" [ngClass]="{'has-error': form.submitted && formGroup.get('date').invalid}" formControlName="date" matInput [matDatepicker]="myDatepicker" placeholder="{{'measurements.details.date' | translate}}">
+                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi="true" #myDatepicker></mat-datepicker>
+                                </mat-form-field>
+                            </div></div>  
+                        <div class="row">
+                              <div class="col-md-3">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('waist').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.waist' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="waist" step="0.1">
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('biceps').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.biceps' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="biceps" step="0.1">
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('thigh').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.thigh' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="thigh" step="0.1">
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('chest').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.chest' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="chest" step="0.1">
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('neck').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.neck' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="neck" step="0.1">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('hips').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.hips' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="hips" step="0.1">
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('weight').invalid}" class="form-group form-black label-floating">
+                                      <label class="control-label">{{'measurements.details.weight' | translate}}</label>
+                                      <input type="number" class="form-control" formControlName="weight" step="0.1">
+                                  </div>
+                              </div>
+                          </div>
+                          <button type="submit" class="btn btn-danger pull-right">{{'measurements.details.submit' | translate}}</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  

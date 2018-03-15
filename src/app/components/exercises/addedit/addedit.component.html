@@ -1,0 +1,42 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">{{'exercise.details.title' | translate}}</h4>
+            <p class="category">{{'exercise.details.subtitle' | translate}}</p>
+          </div>
+          <div class="card-content">
+            <form #form="ngForm" [formGroup]="formGroup" id="formGroup" name="formGroup" (submit)="submitExercise()">
+              <div class="row">
+                <div class="col-md-3">
+                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('defaultName').invalid}" class="form-group form-black label-floating">
+                    <label class="control-label">{{'exercise.details.defaultName' | translate}}</label>
+                    <input type="text" class="form-control" formControlName="defaultName">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div [ngClass]="{'has-error': form.submitted && formGroup.get('youtubeLink').invalid}" class="form-group form-black label-floating">
+                    <label class="control-label">{{'measurements.details.youtubeLink' | translate}}</label>
+                    <input type="text" class="form-control" formControlName="youtubeLink">
+                    <div *ngIf="form.submitted && formGroup.get('youtubeLink').invalid" class="alert alert-danger">
+                      <div *ngFor="let error of object.keys(formGroup.get('youtubeLink').errors);">
+                        {{'exercise.details.youtubeLink.' + error | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <button type="submit" class="btn btn-danger pull-right">{{'exercise.details.submit' | translate}}</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

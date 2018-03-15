@@ -1,0 +1,35 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+/> -->
+<link rel="stylesheet" href="/assets/login.css" />
+<div class="wrapper">
+<mat-card class="login-card form-signin">
+  <mat-card-title>{{ 'login-page.login-title' | translate }}</mat-card-title>
+  <mat-card-content>
+    <div class="form-wrapper">
+      <form id="loginForm" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="{{'login-page.login-or-email-prompt' | translate}}"
+          />
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="{{'login-page.password-prompt' | translate}}"
+          />
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions style="margin-bottom: 0px;">
+    <div class="form-group signup-button-div">
+      <button mat-raised-button color="primary" [disabled]="loading" class="signup-button" form="loginForm">{{'login-page.sign-up' | translate}}</button>
+    </div>
+  </mat-card-actions>
+  <mat-card-footer>
+    <div class="login-footer">
+      <a routerLink="/register">{{'login-page.register' | translate}}</a>
+    </div>
+  </mat-card-footer>
+</mat-card>
+</div>

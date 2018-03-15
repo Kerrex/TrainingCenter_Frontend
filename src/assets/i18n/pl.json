@@ -1,0 +1,63 @@
+{
+    "login-page.login-title": "Zaloguj się",
+    "login-page.login-or-email-prompt": "Podaj login lub adres e-mail",
+    "login-page.password-prompt": "Podaj hasło",
+    "login-page.sign-up": "Zaloguj się",
+    "login-page.register": "Nie masz jeszcze konta? Zarejestruj się",
+    "registration.step_1": "Krok 1",
+    "registration.step_2": "Krok 2",
+    "registration.step_3": "Krok 3",
+    "registration.title": "Zarejestruj się",
+    "registration.back_to_login": "Powrót do logowania",
+    "registration.next_step": "Następny krok",
+    "registration.username": "Nazwa użytkownika",
+    "registration.password": "Hasło",
+    "registration.username.usernameTaken": "Nazwa użytkownika jest już zajęta!",
+    "registration.password.minlength": "Hasło musi mieć minimum 8 znaków!",
+    "registration.email": "Adres e-mail",
+    "registration.email.email": "Niepoprawny format e-mail",
+    "registration.firstName": "Imię",
+    "registration.lastName": "Nazwisko",
+    "registration.previous_step": "Poprzedni krok",
+    "registration.thank_you_message_1": "Dziękujemy za rejestrację!",
+    "registration.thank_you_message_2": "Kliknij w link potwierdzający wysłany na adres e-mail, aby móc korzystać z serwisu",
+
+    "sidebar": {
+        "tab": {
+            "home": "Kokpit",
+            "measurements": "Pomiary",
+            "calendar": "Kalendarz",
+            "training-plans": "Plany treningowe",
+            "exercises": "Ćwiczenia"
+        }
+    },
+
+    "measurements": {
+        "table": {
+            "weight": "Waga",
+            "waist": "Obwód pasa",
+            "biceps": "Obwód bicepsu",
+            "date": "Data pomiaru",
+            "thigh": "Obwód w udzie",
+            "chest": "Obwód w klatce piersiowej",
+            "neck": "Obwód w szyi",
+            "header": "Tabela pomiarów",
+            "subtitle": "Twoje pomiary",
+            "fat_percentage": "Procent tłuszczu",
+            "add_new": "Dodaj"
+        }
+    },
+    
+    "calendar": {
+        "selected_day": {
+            "header": "Wybrano:"
+        }
+    },
+
+    "table": {
+        "previous": "Poprzednia",
+        "next": "Następna",
+        "pages.of": "z"
+
+    }
+}

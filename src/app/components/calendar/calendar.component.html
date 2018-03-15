@@ -1,0 +1,62 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header" data-background-color="red">
+        <h4 class="nav-tabs-title">{{'calendar.header' | translate}}</h4>
+      </div>
+      <div class="card-content container">
+        <div class="row">
+          <div class="calendar col-md-8">
+            <!-- Calendar made by JS here! -->
+          </div>
+          <div class="col-md-4 calendar-details-card">
+            <div class="row">
+              <div class="col-md-9">
+                <h6>{{'calendar.selected_day.header' | translate}}
+                  <span class="selected-date">15.02.2018</span>
+                </h6>
+              </div>
+              <div class="col-md-3">
+                <a (click)="showAddExerciseModal()" style="cursor: pointer;">
+                  <i class="material-icons">add_circle_outline</i>
+                </a>
+              </div>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add training dialog -->
+<div id="modal" class="modal fade" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{'calendar.add_new_training.title' | translate}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>{{'calendar.add_new_training.select_training'}}</div>
+        <div>
+          <mat-form-field>
+            <mat-select placeholder="{{'calendar.add_new_training.placeholder'}}">
+              <mat-option>Opcja 1</mat-option>
+              <mat-option>Opcja 1</mat-option>
+              <mat-option>Opcja 1</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'calendar.add_new_training.close' | translate}}</button>
+        <button type="button" class="btn btn-primary">{{'calendar.add_new_training.save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

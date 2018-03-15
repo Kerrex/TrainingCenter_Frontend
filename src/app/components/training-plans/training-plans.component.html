@@ -1,0 +1,65 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-nav-tabs">
+          <div class="card-header" data-background-color="red">
+            <div class="nav-tabs-wrapper">
+              <span class="nav-tabs-title">{{'training_plans.table.header' | translate}}</span>
+              <ul class="nav nav-tabs" data-tabs="tabs">
+                <li class="active">
+                  <a routerLink="/training-plans/addedit" data-toggle="tab" class="pointer-important">
+                    <i class="material-icons">add</i>
+                    {{'training_plans.table.add_new' | translate}}
+                    <div class="ripple-container"></div>
+                  </a>
+                </li>
+              </ul>
+              <p>
+            </div>
+          </div>
+          <div class="card-content table-responsive" *ngFor="let page of [trainingPlans | async]">
+            <div class="row">
+              <div class="col-md-7 training_plan_list">
+                <table class="table table-hover">
+                  <thead class="text-danger">
+                    <tr>
+                      <th>{{'training_plans.table.name' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let trainingPlan of getResources(page)" id="training_plan_{{trainingPlan.id}}">
+                      <td>{{trainingPlan.name}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav aria-label="Page navigation example" *ngIf="page !== null">
+                  <ul class="pagination pull-right">
+                    <li role="button" class="page-item" [class.disabled]="page.page.number === 0 ? -1 : null">
+                      <a (click)="goToPreviousPage(page)" class="page-link">{{'table.previous' | translate}}</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link">{{page.page.number + 1}} {{'table.pages.of' | translate}} {{page.page.totalPages}}</a>
+                    </li>
+                    <li role="button" class="page-item" [class.disabled]="page.page.number + 1 >= page.page.totalPages ? -1 : null">
+                      <a (click)="goToNextPage(page)" class="page-link">{{'table.next' | translate}}</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="col-md-5 exercise_list">
+                <h6 class="text-danger">{{'training_plans.selected' | translate}}</h6>
+                <div class="training_plans_exercises">
+                  <div class="exercise">Test</div>
+                  <div class="exercise">Test</div>
+                  <div class="exercise">Test</div>
+                  <div class="exercise">Test</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
