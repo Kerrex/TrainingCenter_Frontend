@@ -28,7 +28,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let trainingPlan of getResources(page)" id="training_plan_{{trainingPlan.id}}">
+                    <tr *ngFor="let trainingPlan of getResources(page)" (click)="selectTrainingPlan($event, trainingPlan)" class="training_plan_row" id="training_plan_{{trainingPlan.id}}">
                       <td>{{trainingPlan.name}}</td>
                     </tr>
                   </tbody>
@@ -50,10 +50,16 @@
               <div class="col-md-5 exercise_list">
                 <h6 class="text-danger">{{'training_plans.selected' | translate}}</h6>
                 <div class="training_plans_exercises">
-                  <div class="exercise">Test</div>
-                  <div class="exercise">Test</div>
-                  <div class="exercise">Test</div>
-                  <div class="exercise">Test</div>
+                  <div *ngIf="!exercises; else elseTemplate">
+                    {{'training_plans.exercises.select_training_plan_prompt' | translate}}
+                  </div>
+                  <ng-template #elseTemplate>
+                    <div *ngFor="let page of [exercises | async]">
+                      <div class="exercise" *ngFor="let exercise of getResources(page)">
+                        <div>{{getExerciseName(exercise)}} - <span *ngFor="let exercisePlan of [getExercisePlan(exercise.id) | async]">{{exercisePlan}}</span></div>
+                      </div>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div>

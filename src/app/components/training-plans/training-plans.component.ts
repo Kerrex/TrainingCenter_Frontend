@@ -6,8 +6,11 @@ import {Page} from '../../beans/page';
 import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from '../../services/exercise.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'
 import { TrainingPlan } from '../../beans/training-plan';
 import { TrainingPlanService } from '../../services/training-plan.service';
+import { Resource } from '../../beans/resource';
+import { ExerciseTrainingPlan } from '../../beans/exercise-training-plan';
 
 declare var $: any;
 
@@ -18,9 +21,15 @@ declare var $: any;
 })
 export class TrainingPlansComponent implements OnInit {
   trainingPlans: Observable<Page<TrainingPlan>>;
+  exercises: Observable<Page<Exercise>>;
+  selectedTrainingPlan: TrainingPlan
+  exerciseAndExercisePlan: {
+    exercise: Exercise,
+    exercisePlan: ExerciseTrainingPlan
+  }
 
   constructor(private trainingPlanService: TrainingPlanService, private resourceService: CommonResourcesService,
-              private translateService: TranslateService) { }
+              private translateService: TranslateService, private exerciseService: ExerciseService) { }
 
   ngOnInit() {
     this.trainingPlans = this.trainingPlanService.getTrainingPlans();
@@ -39,7 +48,7 @@ export class TrainingPlansComponent implements OnInit {
       (error => NotificationUtils.showNotification('top', 'right', NotificationUtils.DANGER, 'notifications', 'Nieznany błąd serwera!')));
   }
 
-  getResources(page: Page<TrainingPlan>): TrainingPlan[] {
+  getResources(page: Page<TrainingPlan | Exercise>): (TrainingPlan | Exercise)[] {
     return this.resourceService.getResources(page);
   }
 
@@ -56,6 +65,32 @@ export class TrainingPlansComponent implements OnInit {
       this.trainingPlans = this.resourceService.getArrayFromUrl<TrainingPlan>(nextPageUrl);
     }
   }
+
+  selectTrainingPlan($event: any, trainingPlan: TrainingPlan) {
+    $(".training_plan_row").removeClass('selected');
+    $($event.target).addClass('selected');
+
+    this.selectedTrainingPlan = trainingPlan;
+    this.exercises = this.exerciseService.getCurrentUserExercisesByTrainingPlanId(trainingPlan.id);
+    const dupa = this.exercises.map(exercisePage => this.getResources(exercisePage))
+                               .flatMap(exercises => Observable.forkJoin(exercises.map(exercise => this.exerciseService.getExerciseTrainingPlan(trainingPlan.id, exercise.id)))
+                            
+                                                   
+  }
+
+  getExerciseName(exercise: Exercise): string {
+    let currentLang = this.translateService.currentLang;
+    let translatedExercise = exercise.exerciseLanguageVersions.find(lv => lv.languageVersionCode === currentLang);
+    if (translatedExercise !== undefined) {
+      return translatedExercise.name;
+    }
+    return exercise.defaultName;
+  }
+
+  getExercisePlan(exerciseId: number): Observable<ExerciseTrainingPlan> {
+    return this.exerciseService.getExerciseTrainingPlan(this.selectedTrainingPlan.id, exerciseId);
+  }
+
   print(obj: Object) {
     console.log(obj);
   }

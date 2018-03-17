@@ -36,7 +36,13 @@ export class ExerciseService {
     return this.http.delete(AuthenticationService.API_HOST + ExerciseService.EXERCISES + exerciseId);
   }
 
-  getCurrentUserExercisesByTrainingPlanId(trainingPlanId: number): Observable<ExerciseTrainingPlan> {
-    return this.http.get<ExerciseTrainingPlan>(AuthenticationService.API_HOST + ExerciseService.EXERCISES + "by_training_plan/")
+  getCurrentUserExercisesByTrainingPlanId(trainingPlanId: number): Observable<Page<Exercise>> {
+    return this.http.get<Page<Exercise>>(AuthenticationService.API_HOST + ExerciseService.EXERCISES 
+      + "search/findByTrainingPlanId/?trainingPlanId=" + trainingPlanId);
+  }
+
+  getExerciseTrainingPlan(trainingPlanId: number, exerciseId: number): Observable<ExerciseTrainingPlan> {
+    return this.http.get<ExerciseTrainingPlan>(AuthenticationService.API_HOST + ExerciseService.EXERCISE_TRAINING_PLANS 
+      + `search/findByTrainingPlanIdAndExerciseId?trainingPlanId=${trainingPlanId}&exercisId=${exerciseId}`);
   }
 }

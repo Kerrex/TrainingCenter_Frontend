@@ -8,4 +8,8 @@ export abstract class Resource {
     getSelfLink(): string {
         return this._links.self.href;
     }
+
+    getLink(resourceName: string) {
+        return this._links[resourceName].href;
+    }
 }
